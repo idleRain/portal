@@ -34,8 +34,8 @@
           <ul class="space-y-3">
             <li v-for="link in quickLinks" :key="link.label">
               <a
-                :href="link.href"
                 class="text-neutral-400 text-sm hover:text-white transition-colors duration-200"
+                @click.prevent="scrollTo(link.href.slice(1))"
               >
                 {{ link.label }}
               </a>
@@ -49,8 +49,8 @@
           <ul class="space-y-3">
             <li v-for="product in productLinks" :key="product">
               <a
-                href="#products"
                 class="text-neutral-400 text-sm hover:text-white transition-colors duration-200"
+                @click.prevent="scrollTo('products')"
               >
                 {{ product }}
               </a>
@@ -94,6 +94,10 @@
 </template>
 
 <script setup lang="ts">
+function scrollTo(id: string) {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+}
+
 import { MapPin, Phone, Mail } from 'lucide-vue-next'
 
 const quickLinks = [

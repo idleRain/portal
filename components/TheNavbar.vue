@@ -14,8 +14,8 @@
       <div class="flex items-center justify-between h-16 lg:h-20">
         <!-- Logo & Brand -->
         <a
-          href="#hero"
           class="flex items-center gap-3 group"
+          @click.prevent="scrollTo('hero')"
           aria-label="北京博信达自动化 - 回到首页"
         >
           <div
@@ -51,7 +51,7 @@
           <a
             v-for="link in navLinks"
             :key="link.href"
-            :href="link.href"
+            @click.prevent="scrollTo(link.href.slice(1))"
             :class="[
               'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200',
               isScrolled
@@ -62,8 +62,8 @@
             {{ link.label }}
           </a>
           <a
-            href="#contact"
             class="ml-4 px-5 py-2.5 bg-primary-600 text-white text-sm font-medium rounded-lg hover:bg-primary-700 transition-colors duration-200"
+            @click.prevent="scrollTo('contact')"
           >
             获取方案
           </a>
@@ -114,16 +114,14 @@
           <a
             v-for="link in navLinks"
             :key="link.href"
-            :href="link.href"
             class="block px-4 py-3 rounded-lg text-neutral-700 hover:text-primary-600 hover:bg-primary-50 font-medium transition-colors duration-200"
-            @click="closeMobileMenu"
+            @click.prevent="scrollTo(link.href.slice(1)); closeMobileMenu()"
           >
             {{ link.label }}
           </a>
           <a
-            href="#contact"
             class="block mt-4 px-4 py-3 bg-primary-600 text-white text-center font-medium rounded-lg hover:bg-primary-700 transition-colors duration-200"
-            @click="closeMobileMenu"
+            @click.prevent="scrollTo('contact'); closeMobileMenu()"
           >
             获取方案
           </a>
@@ -135,6 +133,10 @@
 
 <script setup lang="ts">
 import { Menu, X } from 'lucide-vue-next'
+
+function scrollTo(id: string) {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+}
 
 const navLinks = [
   { label: '首页', href: '#hero' },

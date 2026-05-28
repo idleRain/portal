@@ -22,6 +22,9 @@ export default defineNuxtConfig({
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
         { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
       ],
+      script: [
+        { children: 'history.scrollRestoration="manual"', tagPosition: 'head' },
+      ],
     },
   },
 

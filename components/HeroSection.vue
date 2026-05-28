@@ -51,15 +51,15 @@
           <!-- CTA 按钮 -->
           <div class="flex flex-wrap gap-4">
             <a
-              href="#products"
               class="inline-flex items-center gap-2 px-8 py-3.5 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-all duration-200 hover:shadow-lg hover:shadow-primary-600/25"
+              @click.prevent="scrollTo('products')"
             >
               了解产品
               <ArrowRight class="w-4 h-4" />
             </a>
             <a
-              href="#contact"
               class="inline-flex items-center gap-2 px-8 py-3.5 border border-white/20 text-white font-medium rounded-lg hover:bg-white/10 transition-all duration-200"
+              @click.prevent="scrollTo('contact')"
             >
               联系我们
               <Phone class="w-4 h-4" />
@@ -98,11 +98,15 @@
     </div>
 
     <!-- 底部渐变过渡 -->
-    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent" />
+    <div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent pointer-events-none" />
   </section>
 </template>
 
 <script setup lang="ts">
+function scrollTo(id: string) {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+}
+
 import {
   ArrowRight,
   Phone,

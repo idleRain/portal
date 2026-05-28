@@ -35,9 +35,13 @@
       </div>
 
       <!-- 产品卡片网格 -->
-      <div ref="gridRef" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <TransitionGroup name="card">
-          <div
+      <TransitionGroup
+        ref="gridRef"
+        tag="div"
+        name="card"
+        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      >
+        <div
             v-for="product in filteredProducts"
             :key="product.name"
             class="bg-white rounded-2xl overflow-hidden border border-neutral-200/50 group hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300"
@@ -68,7 +72,6 @@
             </div>
           </div>
         </TransitionGroup>
-      </div>
     </div>
   </section>
 </template>
@@ -77,7 +80,7 @@
 import {
   Package,
   Bot,
-  ConveyorBelt,
+  BriefcaseConveyorBelt,
   Grip,
   Eye,
 } from 'lucide-vue-next'
@@ -114,7 +117,7 @@ const products = [
     type: 'line',
     desc: '模块化智能装配产线，支持快速换型与柔性生产',
     tags: ['节拍 3s/pcs', '换型时间 <5min', '模块化'],
-    icon: ConveyorBelt,
+    icon: BriefcaseConveyorBelt,
   },
   {
     name: 'AutoLine V200',
@@ -122,7 +125,7 @@ const products = [
     type: 'line',
     desc: '视觉引导的智能分拣与包装产线',
     tags: ['AI视觉定位', '分拣速度 120件/min', '兼容多品类'],
-    icon: ConveyorBelt,
+    icon: BriefcaseConveyorBelt,
   },
   {
     name: 'GripPro E300',
@@ -174,13 +177,22 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.card-enter-active,
-.card-leave-active {
+.card-enter-active {
   transition: all 0.4s ease;
 }
-.card-enter-from,
-.card-leave-to {
+.card-leave-active {
+  transition: all 0.3s ease;
+  position: absolute;
+}
+.card-move {
+  transition: all 0.4s ease;
+}
+.card-enter-from {
   opacity: 0;
   transform: translateY(20px);
+}
+.card-leave-to {
+  opacity: 0;
+  transform: scale(0.95);
 }
 </style>
