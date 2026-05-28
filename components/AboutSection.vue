@@ -15,23 +15,37 @@
       <!-- Bento Grid -->
       <div ref="gridRef" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 auto-rows-auto">
         <!-- 卡片1: 公司概述 (大卡片) -->
-        <div class="md:col-span-2 lg:col-span-2 lg:row-span-2 bg-neutral-900 text-white rounded-2xl p-8 lg:p-10 flex flex-col justify-between group hover:shadow-elevated transition-shadow duration-300">
-          <div>
-            <div class="w-12 h-12 rounded-xl bg-primary-600/20 flex items-center justify-center mb-6">
-              <Factory class="w-6 h-6 text-primary-400" />
+        <div class="md:col-span-2 lg:col-span-2 lg:row-span-2 relative text-white rounded-2xl overflow-hidden group hover:shadow-elevated transition-shadow duration-300 min-h-[300px] lg:min-h-0">
+          <!-- 全幅背景图 -->
+          <img
+            src="https://images.pexels.com/photos/30335865/pexels-photo-30335865/free-photo-of-modern-architecture-of-van-nelle-factory-rotterdam.jpeg?w=1200&h=800&fit=crop"
+            alt="工厂"
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            loading="lazy"
+          />
+          <!-- 左侧半透明遮罩 -->
+          <div class="absolute inset-0 bg-gradient-to-r from-neutral-900/90 via-neutral-900/70 to-transparent" />
+          <!-- 内容 -->
+          <div class="relative z-10 flex flex-col lg:flex-row h-full min-h-[300px] lg:min-h-0">
+            <div class="flex-1 p-8 lg:p-10 flex flex-col justify-between">
+              <div>
+                <div class="w-12 h-12 rounded-xl bg-primary-600/20 backdrop-blur-sm flex items-center justify-center mb-6">
+                  <Factory class="w-6 h-6 text-primary-400" />
+                </div>
+                <h3 class="text-2xl font-bold mb-4">公司概述</h3>
+                <p class="text-neutral-200 leading-relaxed text-base [text-shadow:0_1px_3px_rgba(0,0,0,0.3)]">
+                  北京博信达自动化有限公司成立于 2018 年，专注于工业机器人系统集成与非标自动化设备研发制造。总部位于北京，业务覆盖全国主要工业城市，致力于为制造企业提供高效、可靠的智能化生产解决方案。
+                </p>
+              </div>
+              <div class="mt-8 flex items-center gap-4">
+                <div class="flex -space-x-2">
+                  <div class="w-8 h-8 rounded-full bg-primary-500 flex items-center justify-center text-xs font-bold text-white ring-2 ring-neutral-900">博</div>
+                  <div class="w-8 h-8 rounded-full bg-accent-500 flex items-center justify-center text-xs font-bold text-white ring-2 ring-neutral-900">信</div>
+                  <div class="w-8 h-8 rounded-full bg-primary-400 flex items-center justify-center text-xs font-bold text-white ring-2 ring-neutral-900">达</div>
+                </div>
+                <span class="text-sm text-neutral-300">始于 2018 · 扎根北京</span>
+              </div>
             </div>
-            <h3 class="text-2xl font-bold mb-4">公司概述</h3>
-            <p class="text-neutral-300 leading-relaxed text-base">
-              北京博信达自动化有限公司成立于 2018 年，专注于工业机器人系统集成与非标自动化设备研发制造。总部位于北京，业务覆盖全国主要工业城市，致力于为制造企业提供高效、可靠的智能化生产解决方案。
-            </p>
-          </div>
-          <div class="mt-8 flex items-center gap-4">
-            <div class="flex -space-x-2">
-              <div class="w-8 h-8 rounded-full bg-primary-500 flex items-center justify-center text-xs font-bold text-white ring-2 ring-neutral-900">博</div>
-              <div class="w-8 h-8 rounded-full bg-accent-500 flex items-center justify-center text-xs font-bold text-white ring-2 ring-neutral-900">信</div>
-              <div class="w-8 h-8 rounded-full bg-primary-400 flex items-center justify-center text-xs font-bold text-white ring-2 ring-neutral-900">达</div>
-            </div>
-            <span class="text-sm text-neutral-400">始于 2018 · 扎根北京</span>
           </div>
         </div>
 

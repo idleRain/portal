@@ -47,8 +47,13 @@
             class="bg-white rounded-2xl overflow-hidden border border-neutral-200/50 group hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300"
           >
             <!-- 产品图片区域 -->
-            <div class="relative h-48 bg-gradient-to-br from-neutral-100 to-neutral-50 flex items-center justify-center overflow-hidden">
-              <component :is="product.icon" class="w-16 h-16 text-primary-500 group-hover:scale-110 transition-transform duration-300" />
+            <div class="relative h-48 overflow-hidden">
+              <img
+                :src="product.image"
+                :alt="product.name"
+                class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                loading="lazy"
+              />
               <div class="absolute top-3 right-3">
                 <span class="px-3 py-1 bg-white/90 backdrop-blur-sm text-xs font-medium text-primary-600 rounded-full border border-primary-100">
                   {{ product.category }}
@@ -77,13 +82,7 @@
 </template>
 
 <script setup lang="ts">
-import {
-  Package,
-  Bot,
-  BriefcaseConveyorBelt,
-  Grip,
-  Eye,
-} from 'lucide-vue-next'
+import { Package } from 'lucide-vue-next'
 
 const tabs = [
   { key: 'all', label: '全部' },
@@ -94,6 +93,9 @@ const tabs = [
 
 const activeTab = ref('all')
 
+const pexels = (id: number, suffix = '') =>
+  `https://images.pexels.com/photos/${id}/pexels-photo-${id}${suffix}.jpeg?w=800&h=600&fit=crop`
+
 const products = [
   {
     name: 'FlexArm R800',
@@ -101,7 +103,7 @@ const products = [
     type: 'robot',
     desc: '高精度六轴工业机械臂，适用于焊接、搬运、装配',
     tags: ['载荷 8kg', '精度 ±0.03mm', '6轴'],
-    icon: Bot,
+    image: pexels(34207359, '/free-photo-of-industrial-robot-arm-in-a-manufacturing-facility'),
   },
   {
     name: 'FlexArm R2000',
@@ -109,7 +111,7 @@ const products = [
     type: 'robot',
     desc: '重载型工业机械臂，满足大型工件搬运与加工需求',
     tags: ['载荷 20kg', '精度 ±0.05mm', '6轴'],
-    icon: Bot,
+    image: pexels(16544054, '/free-photo-of-close-up-of-modern-robotic-mechanism'),
   },
   {
     name: 'AutoLine S100',
@@ -117,7 +119,7 @@ const products = [
     type: 'line',
     desc: '模块化智能装配产线，支持快速换型与柔性生产',
     tags: ['节拍 3s/pcs', '换型时间 <5min', '模块化'],
-    icon: BriefcaseConveyorBelt,
+    image: pexels(13974251),
   },
   {
     name: 'AutoLine V200',
@@ -125,7 +127,7 @@ const products = [
     type: 'line',
     desc: '视觉引导的智能分拣与包装产线',
     tags: ['AI视觉定位', '分拣速度 120件/min', '兼容多品类'],
-    icon: BriefcaseConveyorBelt,
+    image: pexels(36522029, '/free-photo-of-automated-circuit-board-inspection-system'),
   },
   {
     name: 'GripPro E300',
@@ -133,7 +135,7 @@ const products = [
     type: 'end',
     desc: '电动自适应夹爪，支持力控与位置双模式',
     tags: ['夹持力 5-100N', '自适应', '即插即用'],
-    icon: Grip,
+    image: pexels(8438863),
   },
   {
     name: 'VisionSense C100',
@@ -141,7 +143,7 @@ const products = [
     type: 'end',
     desc: '3D 视觉定位系统，高精度识别与引导',
     tags: ['精度 ±0.1mm', '视野 500×500mm', '适配多品牌'],
-    icon: Eye,
+    image: pexels(36776919, '/free-photo-of-close-up-of-camera-sensor-on-wooden-surface'),
   },
 ]
 

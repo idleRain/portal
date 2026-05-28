@@ -46,8 +46,13 @@
         >
           <!-- 图片区域 -->
           <div :class="index % 2 === 1 ? 'lg:order-2' : ''">
-            <div class="relative rounded-2xl overflow-hidden bg-gradient-to-br from-neutral-100 to-neutral-50 aspect-video flex items-center justify-center border border-neutral-200/50">
-              <component :is="caseItem.icon" class="w-20 h-20 text-primary-400/60" />
+            <div class="relative rounded-2xl overflow-hidden aspect-video border border-neutral-200/50">
+              <img
+                :src="caseItem.image"
+                :alt="caseItem.name"
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
               <div class="absolute bottom-4 left-4">
                 <span class="px-3 py-1.5 bg-white/90 backdrop-blur-sm text-xs font-medium text-primary-600 rounded-full border border-primary-100">
                   {{ caseItem.industry }}
@@ -149,13 +154,10 @@ import {
   Award,
   Bot,
   Factory,
-  PackageCheck,
   CircleAlert,
   Lightbulb,
   TrendingUp,
   Building2,
-  Car,
-  Smartphone,
 } from 'lucide-vue-next'
 
 const overviewStats = [
@@ -164,6 +166,9 @@ const overviewStats = [
   { key: 'industries', value: 15, label: '个覆盖行业', icon: Factory },
 ]
 
+const pexels = (id: number, suffix = '') =>
+  `https://images.pexels.com/photos/${id}/pexels-photo-${id}${suffix}.jpeg?w=800&h=600&fit=crop`
+
 const cases = [
   {
     name: '某汽车零部件企业自动化升级',
@@ -171,7 +176,7 @@ const cases = [
     need: '人工焊接效率低、一致性差',
     solution: '部署 6 台 FlexArm R800 组建焊接工作站',
     result: '效率提升 40%，良品率从 92% → 99.2%',
-    icon: Car,
+    image: pexels(19233057, '/free-photo-of-assembling-machines-in-factory'),
   },
   {
     name: '某家电龙头柔性装配线改造',
@@ -179,7 +184,7 @@ const cases = [
     need: '多型号混产，换型时间长',
     solution: '部署 AutoLine S100 模块化柔性产线',
     result: '换型时间缩短 80%，产能提升 50%',
-    icon: Smartphone,
+    image: pexels(5554948),
   },
   {
     name: '某食品企业智能分拣系统',
@@ -187,7 +192,7 @@ const cases = [
     need: '人工分拣速度慢、易出错',
     solution: '视觉引导 AutoLine V200 分拣系统',
     result: '分拣速度提升 3 倍，错误率降至 0.1%',
-    icon: PackageCheck,
+    image: pexels(18631424, '/free-photo-of-bottles-of-water-in-factory'),
   },
 ]
 
